@@ -6,6 +6,7 @@ type UserData = {
 type CreatedUser = {
   message: string;
   token: string;
+  status: number;
 };
 
 const createUser = async (userData: UserData): Promise<CreatedUser> => {
@@ -18,7 +19,12 @@ const createUser = async (userData: UserData): Promise<CreatedUser> => {
       },
     });
 
-    return response.json();
+    const responseBody = await response.json();
+
+    return {
+      ...responseBody,
+      status: response.status,
+    };
   } catch (err) {
     console.error(err);
   }

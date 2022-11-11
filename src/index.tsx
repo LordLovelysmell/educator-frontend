@@ -1,8 +1,9 @@
 import ReactDOM from "react-dom/client";
 import App from "@/App";
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
+import Auth from "./pages/Auth";
 
 const rootElement = document.getElementById("root");
 
@@ -14,7 +15,10 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <App />
+        <Routes>
+          <Route path="/sign-up" element={<Auth />} />
+          <Route path="*" element={<Auth />} />
+        </Routes>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>

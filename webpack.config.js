@@ -11,8 +11,6 @@ module.exports = () => {
     return acc;
   }, {});
 
-  console.log(envKeysValues);
-
   return {
     entry: path.resolve(__dirname, "src", "index.tsx"),
 
@@ -49,6 +47,10 @@ module.exports = () => {
           test: /.js$/,
           exclude: /node_modules/,
           use: "babel-loader",
+        },
+        {
+          test: /\.svg$/,
+          use: ["@svgr/webpack"],
         },
       ],
     },
